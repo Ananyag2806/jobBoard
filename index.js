@@ -29,6 +29,7 @@ app.get('/', (req, res) => res.send('API running'));
 // ananya v2v38JvsowHVB7cd
 
 app.use('/api/auth', require('./routes/api/auth.js'));
+app.use('/api/candidate', require('./routes/api/candidate.js'));
 
 const PORT = process.env.PORT || 5000;
 

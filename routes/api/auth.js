@@ -21,21 +21,21 @@ router.get('/', auth, async (req, res) => {
 });
 
 //@route    POST api/auth
-//@desc     Authorize user and get token
+//@desc     Authorize user and get token- login
 //@access   public
 router.post('/', async (req, res) => {
 	const { email, password } = req.body;
 
 	try {
-		let user = await Candidate.findOne({ email });
+		let candidate = await Candidate.findOne({ email });
 
-		if (!user) {
+		if (!candidate) {
 			return res
 				.status(400)
 				.json({ errors: [{ msg: 'Invalid credentials' }] });
 		}
 
-		const isMatch = password === user.password;
+		const isMatch = password === candidate.password;
 
 		if (!isMatch) {
 			return res
@@ -44,8 +44,8 @@ router.post('/', async (req, res) => {
 		}
 
 		const payload = {
-			user: {
-				id: user.id,
+			candidate: {
+				id: candidate.id,
 			},
 		};
 
