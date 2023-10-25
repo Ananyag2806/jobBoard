@@ -1,0 +1,4 @@
+{
+	"mongoURI": "mongodb+srv://ananya:v2v38JvsowHVB7cd@cluster0.sg50du1.mongodb.net/?retryWrites=true&w=majority",
+	"jwtSecret": "jobBoardSecretToken"
+}
