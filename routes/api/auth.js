@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const Candidate = require('../../modules/Candidate');
+const Company = require('../../modules/Company');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
@@ -21,21 +22,23 @@ router.get('/', auth, async (req, res) => {
 });
 
 //@route    POST api/auth
-//@desc     Authorize user and get token- login
+//@desc     Authorize user, both candidate and company and get token- login
 //@access   public
 router.post('/', async (req, res) => {
 	const { email, password } = req.body;
 
 	try {
-		let candidate = await Candidate.findOne({ email });
+		let user =
+			(await Candidate.findOne({ email })) ||
+			(await Company.findOne({ email }));
 
-		if (!candidate) {
+		if (!user) {
 			return res
 				.status(400)
 				.json({ errors: [{ msg: 'Invalid credentials' }] });
 		}
 
-		const isMatch = password === candidate.password;
+		const isMatch = password === user.password;
 
 		if (!isMatch) {
 			return res
@@ -44,8 +47,8 @@ router.post('/', async (req, res) => {
 		}
 
 		const payload = {
-			candidate: {
-				id: candidate.id,
+			user: {
+				id: user.id,
 			},
 		};
 
