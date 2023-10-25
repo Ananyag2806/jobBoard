@@ -14,7 +14,7 @@ const CompanySchema = new mongoose.Schema({
 		require: true,
 	},
 	requirements: {
-		type: String,
+		type: Array,
 		require: true,
 	},
 	primarySkills: {
@@ -35,6 +35,11 @@ const CompanySchema = new mongoose.Schema({
 	},
 	email: {
 		type: String,
+		require: true,
+	},
+	password: {
+		type: String,
+		require: true,
 	},
 	linkedin: {
 		type: String,
