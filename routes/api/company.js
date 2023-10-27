@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Company = require('../../modules/Company');
+const auth = require('../../middleware/auth');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
 //@route    POST api/company
 //@desc     register company
 //@access   public
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
 	const {
 		name,
 		website,
@@ -65,5 +66,9 @@ router.post('/', async (req, res) => {
 		res.status(500).send('Server Error');
 	}
 });
+
+//@route    POST api/company/job
+//@desc     register company
+//@access   public
 
 module.exports = router;
