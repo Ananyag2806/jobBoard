@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const JobPostSchema = new mongoose.Schema({
 	title: {
@@ -24,6 +25,10 @@ const JobPostSchema = new mongoose.Schema({
 	salary: {
 		type: Number,
 		require: true,
+	},
+	companyName: {
+		type: Schema.Types.ObjectId,
+		ref: 'company',
 	},
 });
 

@@ -13,26 +13,6 @@ const CompanySchema = new mongoose.Schema({
 		type: Array,
 		require: true,
 	},
-	requirements: {
-		type: Array,
-		require: true,
-	},
-	primarySkills: {
-		type: Array,
-		require: true,
-	},
-	secondarySkills: {
-		type: Array,
-		require: true,
-	},
-	yoe: {
-		type: Number,
-		require: true,
-	},
-	salary: {
-		type: Number,
-		require: true,
-	},
 	email: {
 		type: String,
 		require: true,
